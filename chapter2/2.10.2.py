@@ -31,7 +31,7 @@ sum = (
     + (s_cost_add * (copies_amount - 1))
     + s_cost_first
 )
-print("Total wholesale cost for 60 copies: ", format(sum, ".2f"))
+print("Total wholesale cost for 60 copies: ", round(sum, 2))
 
 
 # 3. If I leave my house at 6:52 am and run 1 mile at an easy pace (8:15 per mile),
