@@ -16,7 +16,7 @@ full_distance = 10 / 1.61
 
 # Average pace (time per mile in minutes and seconds)
 avg_pace_sec = total_seconds / full_distance
-avg_pace_min = avg_pace_sec // 60 + ((avg_pace_sec % 60) / 100)
+avg_pace_min = avg_pace_sec / 60
 
 print(avg_pace_sec)
 print(avg_pace_min)

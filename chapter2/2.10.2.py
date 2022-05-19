@@ -4,6 +4,7 @@ Exercises of the book "Think python"
 """
 import math
 import datetime
+import decimal
 
 # Exercise 2
 # Using the Python as a calculator
@@ -17,13 +18,13 @@ print("The volume of a sphere: ", (4 / 3 * math.pi * radius**3))
 # 2. Suppose the cover price of a book is $24.95, but bookstores get a 40% discount.
 #   Shipping costs $3 for the first copy and 75 cents for each additional copy.
 #   What is the total wholesale cost for 60 copies?
-cover_price = 24.95
-discount = 0.4
-copies_amount = 60
+cover_price = decimal.Decimal('24.95')
+discount = decimal.Decimal('0.4')
+copies_amount = decimal.Decimal(60)
 
 
-s_cost_first = 3  # Shipping_cost for the first copy
-s_cost_add = 0.75  # Shipping_cost for each additional copy
+s_cost_first = decimal.Decimal(3)  # Shipping_cost for the first copy
+s_cost_add = decimal.Decimal('0.75')  # Shipping_cost for each additional copy
 
 # Total wholesale cost
 sum = (
@@ -31,7 +32,7 @@ sum = (
     + (s_cost_add * (copies_amount - 1))
     + s_cost_first
 )
-print("Total wholesale cost for 60 copies: ", format(sum, ".2f"))
+print("Total wholesale cost for 60 copies: ", round(sum, 2))
 
 
 # 3. If I leave my house at 6:52 am and run 1 mile at an easy pace (8:15 per mile),
