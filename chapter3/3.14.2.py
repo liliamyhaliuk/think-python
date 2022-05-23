@@ -11,7 +11,7 @@ Exercises of the book "Think python"
 #    There should be only two statements in the body of this function, not four.
 
 def do_twice(f, v):
-    '''Run a function two times with an argument v'''
+    """Run a function two times with an argument v"""
     f(v)
     f(v)
 
@@ -19,7 +19,7 @@ def print_spam(s):
     print(s)
 
 def do_four(func, val):
-    '''Run a function four times with an argument val'''
+    """Run a function four times with an argument val"""
     do_twice(func, val)
     do_twice(func, val)
 

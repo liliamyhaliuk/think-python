@@ -7,7 +7,7 @@ Exercises of the book "Think python"
 # so that the last letter of the string is in column 70 of the display.
 
 def right_justify(string):
-    '''Move argument to the left so the last letter of the argument is in column 70 of display'''
+    """Move argument to the left so the last letter of the argument is in column 70 of display"""
     left_space = 70 - len(string)
     print(left_space*' ' + string)
 
