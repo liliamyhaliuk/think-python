@@ -34,15 +34,13 @@ def mysqrt(a):
     # Choose the value of x
     x = a - a / 2
 
-    if x <= 0:
-        x = 1
     # Approximate value of 'how close is close enough'
     epsilon = 0.0000001
 
     # Get square root of a
     while True:
         y = (x + a / x) / 2
-        if (y - x) < epsilon:
+        if abs(y - x) < epsilon:
             return y
         x = y
 

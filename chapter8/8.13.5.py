@@ -30,7 +30,20 @@ def rotate_word(word, number):
     low_word = word.lower()
     new_word = ""
     for letter in low_word:
-        new_word += chr(ord(letter) + number)
+        new_number = ord(letter) + number
+        if new_number > 122:
+            new_number = 96 + (new_number - 122)
+        new_word += chr(new_number)
     return f"New string: {new_word}. Old_string: {word}"
 
-print(rotate_word("cheer", 7))
+# Test of zigzag
+print("Test of zigzag:")
+print(rotate_word("zzzz", 1))
+
+# Test of minus
+print("Test of minus:")
+print(rotate_word("zzzz", -1))
+
+# Normal test
+print("Normal test:")
+print(rotate_word("yyyy", 1))
