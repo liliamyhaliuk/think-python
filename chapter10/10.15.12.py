@@ -33,7 +33,7 @@ def interlock(words):
         if word1 == "":
             continue
         for word2 in words:
-            if word2 == "" or word1 == word2:
+            if word2 == "" or word1 == word2 or len(word1) != len(word2):
                 continue
 
             # Create interlock from 2 words
@@ -66,7 +66,7 @@ def interlock(words):
                 print(word1, word2)
 
 # Get the path to the file words.txt
-path = os.path.sep.join(["chapter10", "words.txt"])
+path = os.path.sep.join(["chapter10", "words_test.txt"])
 
 # Create a list of words from file words.txt
 words = []

@@ -11,12 +11,16 @@ def is_angram(word1, word2):
     # False if words have not the same lenght
     if len(word1) != len(word2):
         return False
-  
-    # Check each letter if it is in the word2
-    for letter in word1:
-        if word1.count(letter) != word2.count(letter):
-            return False
+
+    # Make list of letters from each word
+    letters_word1 = sorted(list(word1))
+    letters_word2 = sorted(list(word2))
+
+    # Compare them
+    if letters_word1 != letters_word2:
+        return False
     return True
+
 # True
 print(is_angram("noon", "onon"))
 # False 
