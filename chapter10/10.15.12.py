@@ -37,42 +37,28 @@ def interlock(words):
                 continue
 
             # Create interlock from 2 words
+            lenght = len(word1)
             index = 0
             new_word = ""
-            while True:
+            while index < lenght:
                 # Make new word by taking 1 letter from each word
                 new_word += word1[index] + word2[index]
 
                 # Move to the next letter
                 index += 1
 
-                # If out of index range (In case word1 is shorter)
-                if index > len(word1) - 1:
-                    if index > len(word2) - 1:
-                        break
-                    else:
-                        new_word += word2[index]
-                        break
-                # If out of index range (In case word2 is shorter)
-                if index > len(word2) - 1:
-                    if index > len(word1) - 1:
-                        break
-                    else:
-                        new_word += word1[index]
-                        break
-
             # Check if the interlock exists in the list of words
             if in_bisect_cheat(words, new_word):
                 print(word1, word2)
 
 # Get the path to the file words.txt
-path = os.path.sep.join(["chapter10", "words_test.txt"])
+path = os.path.sep.join(["chapter10", "words.txt"])
 
 # Create a list of words from file words.txt
 words = []
 with open(path, "r") as f:
     for i in f:
-        words.append(f.readline().strip())
+        words.append(i.strip())
 words.sort()
 
 interlock(words)

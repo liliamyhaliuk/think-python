@@ -22,54 +22,76 @@ Exercises of the book "Think python"
 
 import os
 
-def in_bisect(list_in, target):
+def in_bisect(input, target):
     """Function search for the target in the list of words by using bisecting search"""
+    
+    # Get first middle of the list
+    lenght = len(input)
+    middle = lenght // 2
 
-    middle = len(list_in) // 2
     last_middle = -1
-    index = 0
-    while last_middle != middle and 0 < middle <= len(list_in) - 1 :
+
+    # Array of indexes that we currently looking at
+    start = 0
+    end = lenght
+
+    while last_middle != middle:
         last_middle = middle
 
-        if list_in[middle] == target:
-            return True
+        # Check if we got our target
+        if input[middle] == target:
+            return middle
+
         # Search in the first half
-        if target[index] < list_in[middle][index]:
-            middle = middle // 2
-        # Search in the second half
-        elif target[index] > list_in[middle][index]:
-            step = (((len(list_in) - 1) - middle) // 2)
+        if target < input[middle]:
+            end = middle
+
+            # Calculate step
+            step = (end - start) // 2
             if step == 0:
-                middle += 1
-            else:
-                middle += step
-        # Compare next letter if letters are the same
-        elif target[index] == list_in[middle][index]:
-            index += 1
+                step = 1
+            # Step back
+            middle -= step
+
+        # Search in the second half
+        elif target > input[middle]:
+            start = middle
+
+            # Calculate step
+            step = ((end - start) // 2)
+            if step == 0:
+                step = 1
+            # Step forward
+            middle += step
 
         if last_middle == middle:
             break
     return False
 
 # My test cases
-print("My list. Works fine (not gound) - >", in_bisect(["aaa", "bbb", "ccc", "dddd", "eeeet"], "eeee"))
-print("My list. Works fine (found) - > ", in_bisect(["aaa", "bbb", "ccc", "dddd", "eeee"], "eeee"))
+# print("My list. Works fine (not gound) - >", in_bisect(["aaa", "bbb", "ccc", "dddd", "eeeet"], "eeee"))
+# print("My list. Works fine (found) - > ", in_bisect(["aaa", "bbb", "ccc", "dddd", "eeee"], "eeee"))
 
 
-# Real test case. Words copied from list of words
+# Test1
 test_words = ['zananas', 'zanders', 'zanies', 'zanily', 'zaninesses']
-print("Words from words.txt. Doesn't work ->",in_bisect(test_words, 'zananas'))
+print("Test1. Index of the target word ->",in_bisect(test_words, 'zanies'))
+
+# Test2
+test_words = [0, 1]
+print("Test2. Index of the target word ->", in_bisect(test_words, 0))
 
 # Create a list of words from file words.txt
-
-path = os.path.sep.join(["chapter10", "words_test.txt"])
+path = os.path.sep.join(["chapter10", "words.txt"])
 
 words = []
 with open(path, "r") as f:
     for i in f:
-        words.append(f.readline().strip())
+        words.append(i.strip())
 words.sort()
 #print(words)
 
-# Real test case. Words from words.txt
-print("Words from words.txt. Doesn't work ->", in_bisect(words, "zananas" ))
+# Test3. Words from words.txt
+print("Test3. Words from words.txt. Index of the target word ->", in_bisect(words, "zymurgy" ))
+# Test4. Words from words.txt
+print("Test4. Words from words.txt. Index of the target word ->", in_bisect(words, "aalii" ))
