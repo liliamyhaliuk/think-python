@@ -67,17 +67,23 @@ def metathesis_pair(path):
     # go through each list of anagrams
     for words in possible_pairs.values():
 
-        # Compare each word with the second
+        # Compare words with each other
         for word in words:
 
-            # Get second word to compare
-            index2 = words.index(word) + 1
-            if index2 > len(words) - 1:
-                break
+            # Go through all list of words with bigger indexes (prevent cheking same pairs)
+            step = 1
+            while True:
 
-            # Check if words are metathesis pair
-            word2 = words[index2]
-            if check_letters(word, word2):
-                print(word, word2)
+                # Get next word to compare
+                index2 = words.index(word) + step
+                if index2 > len(words) - 1:
+                    break
+
+                # Check if words are metathesis pair
+                word2 = words[index2]
+                if check_letters(word, word2):
+                    print(word, word2)
+            
+                step +=1
 
 metathesis_pair(PATH)

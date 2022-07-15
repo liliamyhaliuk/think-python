@@ -68,9 +68,7 @@ def make_reduced_words(word_dict):
 def check_if_reducable(word):
     """The function checks if the word is reducable"""
 
-    if word == "":
-        return True
-    if len(word) == 1:
+    if word == "i" or word == "":
         return True
 
     # Get list of all possible words from this word

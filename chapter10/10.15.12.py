@@ -28,28 +28,21 @@ def in_bisect_cheat(word_list, word):
     return word_list[i] == word
 
 def interlock(words):
+    """Checks for words that 'interlock'"""
 
-    for word1 in words:
-        if word1 == "":
-            continue
-        for word2 in words:
-            if word2 == "" or word1 == word2 or len(word1) != len(word2):
-                continue
+    interlocks = {}
+    for word in words:
+        # Create possible words from the word
+        word1 = word[::2]
+        word2 = word[1::2]
 
-            # Create interlock from 2 words
-            lenght = len(word1)
-            index = 0
-            new_word = ""
-            while index < lenght:
-                # Make new word by taking 1 letter from each word
-                new_word += word1[index] + word2[index]
-
-                # Move to the next letter
-                index += 1
-
-            # Check if the interlock exists in the list of words
-            if in_bisect_cheat(words, new_word):
-                print(word1, word2)
+        # Check if the each of words exists in the list of words
+        if len(word1) == len(word2):
+            if in_bisect_cheat(words, word1) and in_bisect_cheat(words, word2):
+                interlocks[word] = [word1, word2]
+  
+    for key, value in interlocks.items():
+        print(f"{key} : {value}")
 
 # Get the path to the file words.txt
 path = os.path.sep.join(["chapter10", "words.txt"])

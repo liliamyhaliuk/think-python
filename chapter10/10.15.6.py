@@ -13,8 +13,8 @@ def is_angram(word1, word2):
         return False
 
     # Make list of letters from each word
-    letters_word1 = sorted(list(word1))
-    letters_word2 = sorted(list(word2))
+    letters_word1 = sorted(word1)
+    letters_word2 = sorted(word2)
 
     # Compare them
     if letters_word1 != letters_word2:

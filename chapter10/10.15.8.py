@@ -37,10 +37,9 @@ def check_similarity(birthday, others):
 
     return similar
 
-def test_prob():
-    """THe function count chances of having same birthday among 23 people"""
+def random_birthdays(students = 23):
+    """Generates random birthdays"""
 
-    # Generate 23 random birthdays
     start_date = datetime.date(2000, 1, 1)
     end_date = datetime.date(2000, 7, 1)
 
@@ -49,27 +48,35 @@ def test_prob():
     days_between_dates = time_between_dates.days
     birthdays = []
 
-    for i in range(23):
+    for i in range(students):
 
         random_number_of_days = random.randrange(days_between_dates)
         random_date = start_date + datetime.timedelta(days=random_number_of_days)
         birthdays.append(random_date)
+    return birthdays
+
+def test_prob(times):
+    """THe function count chances of having same birthday among 23 people"""  
 
     # Counter of people with same birthdays
-    same_birthday = 0
+    count_probability = 0
 
-    # Check random birthdays
-    for birthday in birthdays:
-        same_birthday += check_similarity(birthday, birthdays[birthdays.index(birthday) + 1 :])
-    
+    for i in range(times):
+
+        same_birthday = 0
+        # Generate random birthdays
+        birthdays = random_birthdays()
+        # Check random birthdays for matches
+        for birthday in birthdays:
+            same_birthday += check_similarity(birthday, birthdays[birthdays.index(birthday) + 1 :])
+
+        # Count number of times same birthdays were found
+        if same_birthday > 0:
+            count_probability += 1
+
     # Return amount of same birthdays
-    return print(f"There are {same_birthday} people that have same birthday.")
+    return count_probability
 
-# Test1
-test_prob()
-
-#Test2
-test_prob()
-
-#Test3
-test_prob()
+TIMES = 500
+MATCHES = test_prob(TIMES)
+print(f"In {TIMES} simulation of 23 random birthdays, mathes were found {MATCHES} times ")
